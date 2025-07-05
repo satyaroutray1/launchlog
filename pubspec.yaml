@@ -37,7 +37,7 @@ dependencies:
   http:
   bloc:
   flutter_bloc:
-
+  equatable:
 
 dev_dependencies:
   flutter_test:
