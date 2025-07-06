@@ -52,6 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
             return Container(
               height: 500,
               child: Column(
+
                 children: [
                   Text(flight[i].details, style: TextStyle(
                   ),),
