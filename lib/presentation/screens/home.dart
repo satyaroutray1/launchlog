@@ -24,10 +24,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   getData() async {
-    final response = await http.get(Uri.parse(Constants.singleLaunchesUrl));
-      setState(() {
-        launches.add(Launches.fromJson(json.decode(response.body)));
-      });
+    final response = await http.get(Uri.parse(Constants.allLaunchesUrl));
+
+    launches = (json.decode(response.body) as List).map((json) => Launches.fromJson(json)).toList();
+    setState(() {
+
+    });
   }
 
 
@@ -72,12 +74,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
                           //Text(launches[i].failures[0].reason),
                           Text(launches[i].launchpad.toString()),
-
-                          launches[i].fairings!.reused ? Text('Reused') : Text(''),
-                          launches[i].success ? Text('Success') : Container(
+                          launches[i].fairings !=null ? launches[i].fairings!.reused == true ? Text('Reused') : Text('') : Text(''),
+                          launches[i].success == true ? Text('Success') : Container(
                               color: Colors.red, child: Text('Failure', style: TextStyle(color: Colors.white),)),
                           Text(DateFormat('yyyy-MM-dd HH:mm:ss').format(launches[i].dateUtc)),
-
                         ],
                       ),
                     )

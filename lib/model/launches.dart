@@ -14,7 +14,7 @@ class Launches extends Equatable{
   final bool net;
   final int? window;
   final Rocket rocket;
-  final bool success;
+  final bool? success;
   final List<Failure> failures;
   final String? details;
   final List<String> crew;
@@ -251,7 +251,7 @@ class Failure {
 }
 
 class Fairings {
-  final bool reused;
+  final bool? reused;
   final bool? recoveryAttempt;
   final bool? recovered;
   final List<String> ships;
