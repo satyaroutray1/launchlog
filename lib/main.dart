@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:launchlog/presentation/bloc/launch_bloc.dart';
 import 'package:launchlog/presentation/screens/home.dart';
 
 void main() {
@@ -10,7 +12,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiBlocProvider(providers: [
+      BlocProvider<LaunchBloc>(create: (context) => LaunchBloc()),
+    ], child: MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple,
@@ -25,6 +29,6 @@ class MyApp extends StatelessWidget {
       ),
       home: HomeScreen(),
       debugShowCheckedModeBanner: false,
-    );
+    ));
   }
 }
