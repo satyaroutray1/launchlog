@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:launchlog/constants.dart';
 import 'package:launchlog/model/launches.dart';
+import 'package:intl/intl.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   getData() async {
-    final response = await http.get(Uri.parse(Constants.allLaunchesUrl));
+    final response = await http.get(Uri.parse(Constants.singleLaunchesUrl));
       setState(() {
         launches.add(Launches.fromJson(json.decode(response.body)));
       });
@@ -36,32 +37,52 @@ class _HomeScreenState extends State<HomeScreen> {
       body: ListView.builder(
           itemCount: launches.length,
           itemBuilder: (context, i){
-            return Container(
-              height: 500,
-              child: Column(
+            return Card(
+              child: Container(
+                height: 200,
+                child: Row(
+                  children: [
+                    Image.network(
+                      launches[i].links.patch.small.toString(),
+                      loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                        if (loadingProgress == null) {
+                          return child;
+                        }
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                                : null,
+                          ),
+                        );
+                      },
+                      fit: BoxFit.cover,
+                      height: 150, width: 150,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(launches[i].name, style: TextStyle(
+                            fontWeight: FontWeight.w600
+                          ),),
 
-                children: [
-                  Text(launches[i].name, style: TextStyle(
-                  ),),
-                  Text(launches[i].details.toString()),
+                          Text('windows: ${launches[i].window.toString()}'),
+                          Text('flightNumber: ${launches[i].flightNumber.toString()}'),
 
-                  Image.network(
-                    launches[i].links.patch.small.toString(),
-                    loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                      if (loadingProgress == null) {
-                        return child;
-                      }
-                      return Center(
-                        child: CircularProgressIndicator(
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
-                              : null,
-                        ),
-                      );
-                    },
-                    fit: BoxFit.cover, // Example: how the image should fit
-                  )
-                ],
+                          //Text(launches[i].failures[0].reason),
+                          Text(launches[i].launchpad.toString()),
+
+                          launches[i].fairings!.reused ? Text('Reused') : Text(''),
+                          launches[i].success ? Text('Success') : Container(
+                              color: Colors.red, child: Text('Failure', style: TextStyle(color: Colors.white),)),
+                          Text(DateFormat('yyyy-MM-dd HH:mm:ss').format(launches[i].dateUtc)),
+
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             );
       }),
