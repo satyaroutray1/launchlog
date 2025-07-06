@@ -1,10 +1,9 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:launchlog/constants.dart';
-import 'package:launchlog/model/flight.dart';
+import 'package:launchlog/model/launches.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  List<Flight> flight = [];
+  List<Launches> launches = [];
 
   @override
   void initState() {
@@ -24,44 +23,30 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   getData() async {
-    final response = await http.get(Uri.parse(Constants.url));
+    final response = await http.get(Uri.parse(Constants.allLaunchesUrl));
       setState(() {
-        flight.add(Flight.fromJson(json.decode(response.body)));
-    });
+        launches.add(Launches.fromJson(json.decode(response.body)));
+      });
   }
 
-  Future<Uint8List?> fetchImageBytes(String url) async {
-    final response = await http.get(Uri.parse(url), headers: {
-      'User-Agent': 'Mozilla/5.0',
-    });
-
-    if (response.statusCode == 200) {
-      return response.bodyBytes;
-    } else {
-      print('Failed to fetch image: ${response.statusCode}');
-      return null;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
       body: ListView.builder(
-          itemCount: flight.length,
+          itemCount: launches.length,
           itemBuilder: (context, i){
             return Container(
               height: 500,
               child: Column(
 
                 children: [
-                  Text(flight[i].details, style: TextStyle(
+                  Text(launches[i].name, style: TextStyle(
                   ),),
-                  Text(flight[i].launchFailureDetails.reason),
+                  Text(launches[i].details.toString()),
 
-                  //Text(flight[i].links.missionPatchSmall ),
                   Image.network(
-                    flight[i].links.missionPatchSmall,
-                    // Optional: Show a loading indicator while the image is fetching
+                    launches[i].links.patch.small.toString(),
                     loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
                       if (loadingProgress == null) {
                         return child;
@@ -74,11 +59,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       );
                     },
-                    // Crucial: This builder will be called if there's an error loading the image
                     fit: BoxFit.cover, // Example: how the image should fit
                   )
                 ],
-
               ),
             );
       }),

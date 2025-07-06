@@ -165,8 +165,8 @@ class Core {
     reused: json["reused"],
     landingAttempt: json["landing_attempt"],
     landingSuccess: json["landing_success"],
-    landingType: landingTypeValues.map[json["landing_type"]]!,
-    landpad: landpadValues.map[json["landpad"]]!,
+    landingType: landingTypeValues.map[json["landing_type"]],
+    landpad: landpadValues.map[json["landpad"]],
   );
 
   Map<String, dynamic> toJson() => {
