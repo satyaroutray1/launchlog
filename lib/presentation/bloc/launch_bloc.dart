@@ -10,15 +10,17 @@ import 'package:launchlog/model/launches.dart';
 
 
 class LaunchBloc extends Bloc<LaunchEvent, LaunchState> {
-  LaunchBloc() : super(LaunchState()) {
+  LaunchBloc() : super(LaunchInitial()) {
     on<LaunchEvent>(onLoadEvent);
 
   }
   onLoadEvent(LaunchEvent event, Emitter emit) async {
+
+    emit(LaunchLoading());
+
     final response = await http.get(Uri.parse(Constants.allLaunchesUrl));
 
     List<Launches> launches = (json.decode(response.body) as List).map((json) => Launches.fromJson(json)).toList();
-    print('aaaaaaaa${launches}');
-    emit(state.copyWith(launches: launches));
+    emit(DataAvailable(launches: launches));
   }
 }
