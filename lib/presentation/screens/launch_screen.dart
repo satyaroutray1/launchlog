@@ -41,75 +41,79 @@ class _LaunchScreenState extends State<LaunchScreen> {
                           id: launch.id, details: launch.details.toString(),);
                       }));
                     },
-                    child: Card(
-                      child: SizedBox(
-                        height: 200,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 2,
-                              child: Hero(
-                                tag: launch.id,
-                                child: Image.network(
-                                  launch.links.patch.small.toString(),
-                                  loadingBuilder: (BuildContext context,
-                                      Widget child,
-                                      ImageChunkEvent? loadingProgress) {
-                                    if (loadingProgress == null) {
-                                      return child;
-                                    }
-                                    return Center(
-                                      child: CircularProgressIndicator(
-                                        value: loadingProgress.expectedTotalBytes !=
-                                            null
-                                            ? loadingProgress
-                                            .cumulativeBytesLoaded /
-                                            loadingProgress.expectedTotalBytes!
-                                            : null,
-                                      ),
-                                    );
-                                  },
-                                  fit: BoxFit.contain,
-                                  height: 150, width: 150,
+                    child: Container(
+                      margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                      padding: EdgeInsets.all(5),
+                      child: Card(
+                        child: SizedBox(
+                          height: 200,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                flex: 2,
+                                child: Hero(
+                                  tag: launch.id,
+                                  child: Image.network(
+                                    launch.links.patch.small.toString(),
+                                    loadingBuilder: (BuildContext context,
+                                        Widget child,
+                                        ImageChunkEvent? loadingProgress) {
+                                      if (loadingProgress == null) {
+                                        return child;
+                                      }
+                                      return Center(
+                                        child: CircularProgressIndicator(
+                                          value: loadingProgress.expectedTotalBytes !=
+                                              null
+                                              ? loadingProgress
+                                              .cumulativeBytesLoaded /
+                                              loadingProgress.expectedTotalBytes!
+                                              : null,
+                                        ),
+                                      );
+                                    },
+                                    fit: BoxFit.contain,
+                                    height: 150, width: 150,
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(width: 10,),
-                            Expanded(
-                              flex: 3,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(launch.name, style: TextStyle(
-                                      fontWeight: FontWeight.w600
-                                  ),),
-
-                                  Text('windows: ${launch.window
-                                      .toString()}'),
-                                  Text('flightNumber: ${launch
-                                      .flightNumber.toString()}'),
-
-                                  //Text(launches[i].failures[0].reason),
-                                  Row(
-                                    children: [
-                                      launch.success == true ? CustomButton(
-                                        text: 'Success', color: Colors.green,) : CustomButton(
-                                        color: Colors.red,
-                                        text: 'Failure',),
-                                      SizedBox(width: 5,),
-                                      launch.fairings != null ?
-                                      CustomButton(text: 'Reused', color: Colors.grey,) : Text(''),
-
-                                    ],
-                                  ),
-                                  Text(launch.launchpad.toString()),
-                                  Text(DateFormat('yyyy-MM-dd HH:mm:ss').format(
-                                      launch.dateUtc)),
-                                ],
-                              ),
-                            )
-                          ],
+                              SizedBox(width: 10,),
+                              Expanded(
+                                flex: 3,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(launch.name, style: TextStyle(
+                                        fontWeight: FontWeight.w600
+                                    ),),
+                      
+                                    Text('windows: ${launch.window
+                                        .toString()}'),
+                                    Text('flightNumber: ${launch
+                                        .flightNumber.toString()}'),
+                      
+                                    //Text(launches[i].failures[0].reason),
+                                    Row(
+                                      children: [
+                                        launch.success == true ? CustomButton(
+                                          text: 'Success', color: Colors.green,) : CustomButton(
+                                          color: Colors.red,
+                                          text: 'Failure',),
+                                        SizedBox(width: 5,),
+                                        launch.fairings != null ?
+                                        CustomButton(text: 'Reused', color: Colors.grey,) : Text(''),
+                      
+                                      ],
+                                    ),
+                                    Text(launch.launchpad.toString()),
+                                    Text(DateFormat('yyyy-MM-dd HH:mm:ss').format(
+                                        launch.dateUtc)),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),

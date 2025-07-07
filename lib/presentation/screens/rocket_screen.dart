@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:launchlog/constants.dart';
-import 'package:launchlog/constants.dart';
 import 'package:launchlog/model/rockets.dart';
 
 import '../widget/button.dart';
@@ -17,106 +16,93 @@ class RocketScreen extends StatefulWidget {
 }
 
 class _RocketScreenState extends State<RocketScreen> {
+
+  List<Rockets> rockets = [];
+
   @override
   void initState() {
     super.initState();
-    getRockets();
   }
 
-  List<Rockets> rockets = [];
   getRockets() async {
     final r = await http.get(Uri.parse(Constants.allRockets));
     rockets = (json.decode(r.body) as List).map((json) =>
         Rockets.fromJson(json)).toList();
-    setState(() {
-
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
-      body: ListView.builder(
+    return FutureBuilder(
+        future: getRockets(),
+        builder: (context, state) {
+      return ListView.builder(
           itemCount: rockets.length,
           itemBuilder: (context, i){
-        return GestureDetector(
-          onTap: (){
-            // Navigator.push(context, MaterialPageRoute(builder: (context){
-            //   return LaunchDetails(image: launch.links.patch.small.toString(),
-            //     id: launch.id, details: launch.details.toString(),);
-            // }));
-          },
-          child: Card(
-            child: Container(
-              color: Colors.white,
-              height: 200,
-              child: Row(
-                children: [
-                  Hero(
-                    tag: rockets[i].id,
-                    child: Image.network(
-                      rockets[i].flickrImages[0].toString(),
-                      loadingBuilder: (BuildContext context,
-                          Widget child,
-                          ImageChunkEvent? loadingProgress) {
-                        if (loadingProgress == null) {
-                          return child;
-                        }
-                        return Center(
-                          child: CircularProgressIndicator(
-                            value: loadingProgress.expectedTotalBytes !=
-                                null
-                                ? loadingProgress
-                                .cumulativeBytesLoaded /
-                                loadingProgress.expectedTotalBytes!
-                                : null,
-                          ),
-                        );
-                      },
-                      fit: BoxFit.cover,
-                      height: 150, width: 150,
-                    ),
-                  ),
-                  SizedBox(width: 10,),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(rockets[i].name, style: TextStyle(
-                            fontWeight: FontWeight.w600
-                        ),),
+            return GestureDetector(
+              onTap: (){
 
-                        Text('country: ${rockets[i].country
-                            .toString()}'),
-                        Text('flightNumber: ${rockets[i]
-                            .type.toString()}'),
-
-                        //Text(launches[i].failures[0].reason),
-                        Row(
+              },
+              child: Card(
+                child: SizedBox(
+                  height: 200,
+                  child: Row(
+                    children: [
+                      Hero(
+                        tag: rockets[i].id,
+                        child: Image.network(
+                          rockets[i].flickrImages[0].toString(),
+                          loadingBuilder: (BuildContext context,
+                              Widget child,
+                              ImageChunkEvent? loadingProgress) {
+                            if (loadingProgress == null) {
+                              return child;
+                            }
+                            return Center(
+                              child: CircularProgressIndicator(
+                                value: loadingProgress.expectedTotalBytes !=
+                                    null
+                                    ? loadingProgress
+                                    .cumulativeBytesLoaded /
+                                    loadingProgress.expectedTotalBytes!
+                                    : null,
+                              ),
+                            );
+                          },
+                          fit: BoxFit.cover,
+                          height: 150, width: 150,
+                        ),
+                      ),
+                      SizedBox(width: 10,),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // launch.success == true ? CustomButton(
-                            //   text: 'Success', color: Colors.green,) : CustomButton(
-                            //   color: Colors.red,
-                            //   text: 'Failure',),
-                            // SizedBox(width: 5,),
-                            rockets[i].active ?
-                            CustomButton(text: 'Active', color: Colors.green,) :
-                            CustomButton(text: 'Inactive', color: Colors.grey,),
+                            Text(rockets[i].name, style: TextStyle(
+                                fontWeight: FontWeight.w600
+                            ),),
 
+                            Text('country: ${rockets[i].country
+                                .toString()}'),
+                            Text('flightNumber: ${rockets[i]
+                                .type.toString()}'),
+                            Row(
+                              children: [
+                                rockets[i].active ?
+                                CustomButton(text: 'Active', color: Colors.green,) :
+                                CustomButton(text: 'Inactive', color: Colors.grey,),
+                              ],
+                            ),
+                            Text(rockets[i].firstFlight.toString()),
                           ],
                         ),
-                        //Text(launch.launchpad.toString()),
-                        Text(rockets[i].firstFlight.toString()),
-                      ],
-                    ),
-                  )
-                ],
+                      )
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ),
-        );
-      })
-    ));
+            );
+          });
+        });
   }
 }

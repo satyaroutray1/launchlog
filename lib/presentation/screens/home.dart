@@ -20,7 +20,9 @@ class HomeScreen extends StatelessWidget {
 
   List<PersistentTabConfig> _tabs() => [
     PersistentTabConfig(
-      screen: LaunchScreen(),
+      screen: Container(
+          //color:Colors.black,
+          child: LaunchScreen()),
       item: ItemConfig(
         icon: Icon(Icons.flight_takeoff_sharp),
         title: "Launch",
@@ -29,8 +31,8 @@ class HomeScreen extends StatelessWidget {
     PersistentTabConfig(
       screen: RocketScreen(),
       item: ItemConfig(
-        icon: Icon(Icons.zoom_in_map),
-        title: "X",
+        icon: Icon(Icons.rocket_launch_outlined),
+        title: "Rockets",
       ),
     ),
     PersistentTabConfig(
@@ -48,6 +50,11 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Launch Log'),
         elevation: 10,
+        actions: [
+          IconButton(onPressed: (){}, icon: Icon(Icons.settings)),
+          IconButton(onPressed: (){}, icon: Icon(Icons.person_4)),
+
+        ],
       ),
       body: PersistentTabView(
         tabs: _tabs(),

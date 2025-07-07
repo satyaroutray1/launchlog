@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
           bodySmall: TextStyle(color: Colors.black),
           bodyLarge: TextStyle(color: Colors.black),
           bodyMedium: TextStyle(color: Colors.black),
+
         ),
         useMaterial3: true,
       ),
