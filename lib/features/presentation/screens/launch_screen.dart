@@ -40,7 +40,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
                     onTap: (){
                       Navigator.pushNamed(context, RouteNames.launchDetailScreen,
                           arguments: LaunchDetailArguments(
-                            image: launch.links.patch.small.toString(),
+                            image: launch.imageUrl.toString(),// .links.patch.small.toString(),
                                 id: launch.id, details: launch.details.toString()
                           ));
                     },
@@ -57,7 +57,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
                                 child: Hero(
                                   tag: launch.id,
                                   child: Image.network(
-                                    launch.links.patch.small.toString(),
+                                    launch.imageUrl.toString(),// links.patch.small.toString(),
                                     loadingBuilder: (BuildContext context,
                                         Widget child,
                                         ImageChunkEvent? loadingProgress) {
@@ -90,11 +90,11 @@ class _LaunchScreenState extends State<LaunchScreen> {
                                     Text(launch.name, style: TextStyle(
                                         fontWeight: FontWeight.w600
                                     ),),
-                      
-                                    Text('windows: ${launch.window
-                                        .toString()}'),
-                                    Text('flightNumber: ${launch
-                                        .flightNumber.toString()}'),
+                                    //
+                                    // Text('windows: ${launch.window
+                                    //     .toString()}'),
+                                    // Text('flightNumber: ${launch
+                                    //     .flightNumber.toString()}'),
                       
                                     //Text(launches[i].failures[0].reason),
                                     Row(
@@ -104,12 +104,11 @@ class _LaunchScreenState extends State<LaunchScreen> {
                                           color: Colors.red,
                                           text: 'Failure',),
                                         SizedBox(width: 5,),
-                                        launch.fairings != null ?
-                                        CustomButton(text: 'Reused', color: Colors.grey,) : Text(''),
+                                        //launch.fairings != null ? CustomButton(text: 'Reused', color: Colors.grey,) : Text(''),
                       
                                       ],
                                     ),
-                                    Text(launch.launchpad.toString()),
+                                    //Text(launch.launchpad.toString()),
                                     Text(DateFormat('yyyy-MM-dd HH:mm:ss').format(
                                         launch.dateUtc)),
                                   ],

@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:launchlog/features/data/model/launches.dart';
+import 'package:launchlog/features/domain/entity/launches_entity.dart';
 
 class LaunchState extends Equatable{
 
@@ -12,6 +13,6 @@ class LaunchLoading extends LaunchState {}
 
 class DataAvailable extends LaunchState {
 
-  final List<Launches> launches;
+  final List<LaunchEntity> launches;
   DataAvailable({required this.launches});
 }

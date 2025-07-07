@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:launchlog/features/data/repo_impl/repo_impl.dart';
+import 'package:launchlog/features/domain/repo/repo.dart';
 import 'package:launchlog/features/presentation/bloc/launch_bloc.dart';
 import 'package:launchlog/features/presentation/screens/home.dart';
 import 'package:launchlog/config/routes/route_names.dart';
 import 'package:launchlog/config/routes/routes.dart';
+
+import 'features/domain/usecase/usecase.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +19,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
-      BlocProvider<LaunchBloc>(create: (context) => LaunchBloc()),
+      BlocProvider<LaunchBloc>(create: (context) =>
+          LaunchBloc(LaunchUseCase(launchRepo: LaunchRepoImpl()))),
     ], child: MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
