@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:launchlog/presentation/bloc/launch_bloc.dart';
 import 'package:launchlog/presentation/screens/home.dart';
+import 'package:launchlog/routes/route_names.dart';
+import 'package:launchlog/routes/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +32,9 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: HomeScreen(),
+      //home: HomeScreen(),
+         initialRoute: RouteNames.homeScreen,
+      onGenerateRoute: Routes.generateRoutes,
       debugShowCheckedModeBanner: false,
     ));
   }

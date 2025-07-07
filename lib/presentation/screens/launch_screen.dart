@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:launchlog/presentation/screens/launch_details.dart';
 
+import '../../routes/route_names.dart';
+import '../../routes/routes.dart';
 import '../bloc/launch_bloc.dart';
 import '../bloc/launch_event.dart';
 import '../bloc/launch_state.dart';
@@ -36,10 +38,11 @@ class _LaunchScreenState extends State<LaunchScreen> {
                   final launch = state.launches[i];
                   return GestureDetector(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context){
-                        return LaunchDetails(image: launch.links.patch.small.toString(),
-                          id: launch.id, details: launch.details.toString(),);
-                      }));
+                      Navigator.pushNamed(context, RouteNames.launchDetailScreen,
+                          arguments: LaunchDetailArguments(
+                            image: launch.links.patch.small.toString(),
+                                id: launch.id, details: launch.details.toString()
+                          ));
                     },
                     child: Container(
                       margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
