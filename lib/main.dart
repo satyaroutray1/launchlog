@@ -19,13 +19,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple,
           brightness: Brightness.light,
+          primary: Color(0xFF1E88E5), // Blue accent
+          secondary: Color(0xFFFF6F00), // Orange accent
         ),
         textTheme: TextTheme(
           bodySmall: TextStyle(color: Colors.black),
           bodyLarge: TextStyle(color: Colors.black),
           bodyMedium: TextStyle(color: Colors.black),
-
         ),
+        useMaterial3: true,
       ),
       home: HomeScreen(),
       debugShowCheckedModeBanner: false,
