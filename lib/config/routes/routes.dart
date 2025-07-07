@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:launchlog/presentation/screens/launch_details.dart';
-import 'package:launchlog/presentation/screens/launch_screen.dart';
-import 'package:launchlog/presentation/screens/rocket_screen.dart';
-import 'package:launchlog/routes/route_names.dart';
+import 'package:launchlog/config/routes/route_names.dart';
 
-import '../presentation/screens/home.dart';
+import '../../features/presentation/screens/home.dart';
+import '../../features/presentation/screens/launch_details.dart';
 
 class Routes {
 

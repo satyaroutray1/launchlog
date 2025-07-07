@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:launchlog/presentation/screens/launch_details.dart';
+import 'package:launchlog/features/presentation/screens/launch_details.dart';
 
-import '../../routes/route_names.dart';
-import '../../routes/routes.dart';
+import '../../../config/routes/route_names.dart';
+import '../../../config/routes/routes.dart';
 import '../bloc/launch_bloc.dart';
 import '../bloc/launch_event.dart';
 import '../bloc/launch_state.dart';

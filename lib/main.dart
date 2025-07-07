@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:launchlog/presentation/bloc/launch_bloc.dart';
-import 'package:launchlog/presentation/screens/home.dart';
-import 'package:launchlog/routes/route_names.dart';
-import 'package:launchlog/routes/routes.dart';
+import 'package:launchlog/features/presentation/bloc/launch_bloc.dart';
+import 'package:launchlog/features/presentation/screens/home.dart';
+import 'package:launchlog/config/routes/route_names.dart';
+import 'package:launchlog/config/routes/routes.dart';
 
 void main() {
   runApp(const MyApp());

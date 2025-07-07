@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:http/http.dart' as http;
 
-import '../../constants.dart';
+import '../../../core/constants.dart';
 import 'launch_event.dart';
 import 'launch_state.dart';
-import 'package:launchlog/model/launches.dart';
+import 'package:launchlog/features/data/model/launches.dart';
 
 
 class LaunchBloc extends Bloc<LaunchEvent, LaunchState> {
