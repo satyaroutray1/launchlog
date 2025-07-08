@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:launchlog/features/launch/data/repo_impl/repo_impl.dart';
 import 'package:launchlog/features/launch/presentation/bloc/launch_bloc.dart';
 import 'package:launchlog/config/routes/route_names.dart';
 import 'package:launchlog/config/routes/routes.dart';
 
+import 'dependency_injection.dart';
 import 'features/launch/domain/usecase/usecase.dart';
 
-void main() {
+final sl = GetIt.instance;
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await setup();
   runApp(const MyApp());
 }
 
@@ -18,7 +24,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
       BlocProvider<LaunchBloc>(create: (context) =>
-          LaunchBloc(LaunchUseCase(launchRepo: LaunchRepoImpl()))),
+      //    LaunchBloc(LaunchUseCase(launchRepo: LaunchRepoImpl()))),
+    sl<LaunchBloc>()),
     ], child: MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
