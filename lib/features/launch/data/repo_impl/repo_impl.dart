@@ -1,11 +1,10 @@
-
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:launchlog/core/constants.dart';
-import 'package:launchlog/features/data/model/launches_model.dart';
-import 'package:launchlog/features/domain/repo/repo.dart';
+import 'package:launchlog/features/launch/data/model/launches_model.dart';
+import 'package:launchlog/features/launch/domain/repo/repo.dart';
 
 class LaunchRepoImpl extends LaunchRepo {
 

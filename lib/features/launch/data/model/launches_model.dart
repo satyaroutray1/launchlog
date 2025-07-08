@@ -1,5 +1,4 @@
-
-import 'package:launchlog/features/domain/entity/launches_entity.dart';
+import 'package:launchlog/features/launch/domain/entity/launches_entity.dart';
 
 class LaunchModel extends LaunchEntity {
   const LaunchModel({required super.id, required super.name, required super.dateUtc, required super.success, required super.imageUrl, required super.details});

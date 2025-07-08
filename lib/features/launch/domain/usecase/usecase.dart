@@ -1,5 +1,5 @@
-import 'package:launchlog/features/domain/entity/launches_entity.dart';
-import 'package:launchlog/features/domain/repo/repo.dart';
+import 'package:launchlog/features/launch/domain/entity/launches_entity.dart';
+import 'package:launchlog/features/launch/domain/repo/repo.dart';
 
 class LaunchUseCase {
   final LaunchRepo launchRepo;

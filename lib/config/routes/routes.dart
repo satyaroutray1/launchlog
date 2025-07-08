@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:launchlog/config/routes/route_names.dart';
+import 'package:launchlog/features/launch/presentation/screens/home.dart';
+import 'package:launchlog/features/launch/presentation/screens/launch_details.dart';
 
-import '../../features/presentation/screens/home.dart';
-import '../../features/presentation/screens/launch_details.dart';
 
 class Routes {
 

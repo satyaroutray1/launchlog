@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:launchlog/features/data/model/launches.dart';
-import 'package:launchlog/features/domain/entity/launches_entity.dart';
+import 'package:launchlog/features/launch/domain/entity/launches_entity.dart';
 
 class LaunchState extends Equatable{
 
