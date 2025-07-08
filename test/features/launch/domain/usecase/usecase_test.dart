@@ -9,15 +9,17 @@ class MockRepo extends Mock implements LaunchRepo {}
 void main() {
   final mockRepo = MockRepo();
   final launches = [
-    LaunchEntity(id: '1', name: 'name', success: false,
-        dateUtc: DateTime.now(), imageUrl: 'imageUrl', details: 'details'),
+    LaunchEntity(id: '5eb87cd9ffd86e000604b32a', name: 'FalconSat', success: false,
+        dateUtc: DateTime.parse("2006-03-24T22:30:00.000Z"),
+        imageUrl: 'https://images2.imgbox.com/94/f2/NN6Ph45r_o.png',
+        details: 'Engine failure at 33 seconds and loss of vehicle')
   ];
 
   test('description', () async {
 
     final useCase = LaunchUseCase(launchRepo: mockRepo);
     when(() => mockRepo.fetchData()).thenAnswer((_) async => launches);
-    final result = await useCase();
+    final result = await useCase;
     expect(result, launches);
   });
 }
