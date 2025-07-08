@@ -8,10 +8,17 @@ class LaunchState extends Equatable{
 }
 
 class LaunchInitial extends LaunchState {}
+
 class LaunchLoading extends LaunchState {}
 
 class DataAvailable extends LaunchState {
 
   final List<LaunchEntity> launches;
   DataAvailable({required this.launches});
+}
+
+class Error extends LaunchState {
+
+  final String error;
+  Error({required this.error});
 }

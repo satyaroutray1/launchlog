@@ -41,7 +41,7 @@ dependencies:
   #cached_network_image:
   intl:
   persistent_bottom_nav_bar_v2: ^6.1.0
-  get_it: 
+  get_it:
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +53,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  bloc_test:
+  mocktail:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
