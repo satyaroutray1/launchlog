@@ -16,9 +16,7 @@ class HomeScreen extends StatelessWidget {
 
   List<PersistentTabConfig> _tabs() => [
     PersistentTabConfig(
-      screen: Container(
-          color:Color(0xff0B0F1A),
-          child: LaunchScreen()),
+      screen: LaunchScreen(),
       item: ItemConfig(
         icon: Icon(Icons.flight_takeoff_sharp),
         title: "Launch",
@@ -27,9 +25,7 @@ class HomeScreen extends StatelessWidget {
   ),
     ),
     PersistentTabConfig(
-      screen: Container(
-          color:Color(0xff0B0F1A),
-          child: RocketScreen()),
+      screen: RocketScreen(),
       item: ItemConfig(
         icon: Icon(Icons.rocket_launch_outlined),
         title: "Rockets",
