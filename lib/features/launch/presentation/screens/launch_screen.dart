@@ -91,10 +91,10 @@ class _LaunchScreenState extends State<LaunchScreen> {
                                         fontWeight: FontWeight.w600
                                     ),),
                                     //
-                                    // Text('windows: ${launch.window
-                                    //     .toString()}'),
-                                    // Text('flightNumber: ${launch
-                                    //     .flightNumber.toString()}'),
+                                    Text('windows: ${launch.window
+                                        .toString()}'),
+                                    Text('flightNumber: ${launch
+                                        .flightNumber.toString()}'),
                       
                                     //Text(launches[i].failures[0].reason),
                                     Row(
@@ -104,11 +104,11 @@ class _LaunchScreenState extends State<LaunchScreen> {
                                           color: Colors.red,
                                           text: 'Failure',),
                                         SizedBox(width: 5,),
-                                        //launch.fairings != null ? CustomButton(text: 'Reused', color: Colors.grey,) : Text(''),
+                                        launch .fairingsReused != null ? CustomButton(text: 'Reused', color: Colors.grey,) : Text(''),
                       
                                       ],
                                     ),
-                                    //Text(launch.launchpad.toString()),
+                                    Text(launch.launchpad.toString()),
                                     Text(DateFormat('yyyy-MM-dd HH:mm:ss').format(
                                         launch.dateUtc)),
                                   ],

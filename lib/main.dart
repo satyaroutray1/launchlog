@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:launchlog/features/launch/data/repo_impl/repo_impl.dart';
 import 'package:launchlog/features/launch/presentation/bloc/launch_bloc.dart';
 import 'package:launchlog/config/routes/route_names.dart';
 import 'package:launchlog/config/routes/routes.dart';
 
 import 'dependency_injection.dart';
-import 'features/launch/domain/usecase/usecase.dart';
 
 final sl = GetIt.instance;
 

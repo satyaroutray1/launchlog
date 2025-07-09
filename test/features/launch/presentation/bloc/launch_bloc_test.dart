@@ -18,7 +18,8 @@ void main() {
       LaunchEntity(id: '5eb87cd9ffd86e000604b32a', name: 'FalconSat', success: false,
           dateUtc: DateTime.parse("2006-03-24T22:30:00.000Z"),
           imageUrl: 'https://images2.imgbox.com/94/f2/NN6Ph45r_o.png',
-          details: 'Engine failure at 33 seconds and loss of vehicle')
+          details: 'Engine failure at 33 seconds and loss of vehicle',window: 0,
+          flightNumber: 1, fairingsReused: false, launchpad: '5e9e4502f5090995de566f86')
     ];
 
     blocTest<LaunchBloc, LaunchState>(

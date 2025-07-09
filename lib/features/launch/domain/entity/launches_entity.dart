@@ -7,6 +7,10 @@ class LaunchEntity extends Equatable{
   final DateTime dateUtc;
   final String? imageUrl;
   final String? details;
+  final int? window;
+  final int? flightNumber;
+  final bool? fairingsReused;
+  final String? launchpad;
 
   const LaunchEntity({
     required this.id,
@@ -15,9 +19,15 @@ class LaunchEntity extends Equatable{
     required this.dateUtc,
     required this.imageUrl,
     required this.details,
+    required this.window,
+    required this.flightNumber,
+    required this.fairingsReused,
+    required this.launchpad
   });
 
   @override
-  List<Object?> get props => [id, name, success, dateUtc, imageUrl, details];
+  List<Object?> get props => [id, name, success, dateUtc, imageUrl,
+    details, window, flightNumber, fairingsReused, launchpad];
 
 }
+
