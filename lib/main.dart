@@ -33,10 +33,9 @@ class MyApp extends StatelessWidget {
           secondary: Color(0xFFFF6F00), // Orange accent
         ),
         textTheme: TextTheme(
-          bodySmall: TextStyle(color: Colors.black),
-          bodyLarge: TextStyle(color: Colors.black),
-          bodyMedium: TextStyle(color: Colors.black),
-
+          bodyLarge: TextStyle(color: Colors.white),
+          bodyMedium: TextStyle(color: Color(0xFFC0C5D0)),
+          titleLarge: TextStyle(color: Colors.white),
         ),
         useMaterial3: true,
       ),

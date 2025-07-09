@@ -17,25 +17,35 @@ class HomeScreen extends StatelessWidget {
   List<PersistentTabConfig> _tabs() => [
     PersistentTabConfig(
       screen: Container(
-          //color:Colors.black,
+          color:Color(0xff0B0F1A),
           child: LaunchScreen()),
       item: ItemConfig(
         icon: Icon(Icons.flight_takeoff_sharp),
         title: "Launch",
-      ),
+        inactiveForegroundColor: Color(0xff7A7F90),
+        activeForegroundColor: Color(0xff00BFFF),
+  ),
     ),
     PersistentTabConfig(
-      screen: RocketScreen(),
+      screen: Container(
+          color:Color(0xff0B0F1A),
+          child: RocketScreen()),
       item: ItemConfig(
         icon: Icon(Icons.rocket_launch_outlined),
         title: "Rockets",
+        inactiveForegroundColor: Color(0xff7A7F90),
+        activeForegroundColor: Color(0xff00BFFF),
       ),
     ),
     PersistentTabConfig(
-      screen: Placeholder(),
+      screen: Container(
+          color:Color(0xff0B0F1A),
+          child: Placeholder()),
       item: ItemConfig(
         icon: Icon(Icons.zoom_in_map),
         title: "X",
+        inactiveForegroundColor: Color(0xff7A7F90),
+        activeForegroundColor: Color(0xff00BFFF),
       ),
     ),
   ];
@@ -44,11 +54,12 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
       appBar: AppBar(
-        title: Text('Launch Log'),
+        backgroundColor: Color(0xff0B0F1A),
+        title: Text('Launch Log', style: TextStyle(color: Colors.white),),
         elevation: 10,
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.settings)),
-          IconButton(onPressed: (){}, icon: Icon(Icons.person_4)),
+          IconButton(onPressed: (){}, icon: Icon(Icons.settings, color: Colors.white,)),
+          IconButton(onPressed: (){}, icon: Icon(Icons.person_4, color: Colors.white,)),
 
         ],
       ),
@@ -56,6 +67,9 @@ class HomeScreen extends StatelessWidget {
         tabs: _tabs(),
         navBarBuilder: (navBarConfig) => Style1BottomNavBar(
           navBarConfig: navBarConfig,
+          navBarDecoration: NavBarDecoration(
+            color: Color(0xff12151F)
+          ),
         ),
       ),
     ));

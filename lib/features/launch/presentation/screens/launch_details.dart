@@ -8,13 +8,17 @@ class LaunchDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
+      backgroundColor: Color(0xff0B0F1A),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(child: Hero(tag: id,
           child: Image.network(image))),
-          Expanded(child: Column(
+          Expanded(
+              child: Column(
             children: [
-              Text(details)
+              Text(details, textAlign: TextAlign.start,),
+
             ],
           ))
         ],

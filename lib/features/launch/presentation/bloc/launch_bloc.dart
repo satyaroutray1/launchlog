@@ -23,7 +23,6 @@ class LaunchBloc extends Bloc<LaunchEvent, LaunchState> {
 
     try {
       final a = await launchUseCase();
-      print(a);
       emit(DataAvailable(launches: a));
     }catch (e){
       emit(Error(error: e.toString()));

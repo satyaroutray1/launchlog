@@ -42,62 +42,69 @@ class _RocketScreenState extends State<RocketScreen> {
               onTap: (){
 
               },
-              child: Card(
-                child: SizedBox(
-                  height: 200,
-                  child: Row(
-                    children: [
-                      Hero(
-                        tag: rockets[i].id,
-                        child: Image.network(
-                          rockets[i].flickrImages[0].toString(),
-                          loadingBuilder: (BuildContext context,
-                              Widget child,
-                              ImageChunkEvent? loadingProgress) {
-                            if (loadingProgress == null) {
-                              return child;
-                            }
-                            return Center(
-                              child: CircularProgressIndicator(
-                                value: loadingProgress.expectedTotalBytes !=
-                                    null
-                                    ? loadingProgress
-                                    .cumulativeBytesLoaded /
-                                    loadingProgress.expectedTotalBytes!
-                                    : null,
-                              ),
-                            );
-                          },
-                          fit: BoxFit.cover,
-                          height: 150, width: 150,
-                        ),
-                      ),
-                      SizedBox(width: 10,),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(rockets[i].name, style: TextStyle(
-                                fontWeight: FontWeight.w600
-                            ),),
-
-                            Text('country: ${rockets[i].country
-                                .toString()}'),
-                            Text('flightNumber: ${rockets[i]
-                                .type.toString()}'),
-                            Row(
-                              children: [
-                                rockets[i].active ?
-                                CustomButton(text: 'Active', color: Colors.green,) :
-                                CustomButton(text: 'Inactive', color: Colors.grey,),
-                              ],
+              child: Container(
+                margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                padding: EdgeInsets.all(5),
+                child: Card(
+                  color: Color(0xff1C1F2A),
+                  child: SizedBox(
+                    height: 200,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Hero(
+                            tag: rockets[i].id,
+                            child: Image.network(
+                              rockets[i].flickrImages[0].toString(),
+                              loadingBuilder: (BuildContext context,
+                                  Widget child,
+                                  ImageChunkEvent? loadingProgress) {
+                                if (loadingProgress == null) {
+                                  return child;
+                                }
+                                return Center(
+                                  child: CircularProgressIndicator(
+                                    value: loadingProgress.expectedTotalBytes !=
+                                        null
+                                        ? loadingProgress
+                                        .cumulativeBytesLoaded /
+                                        loadingProgress.expectedTotalBytes!
+                                        : null,
+                                  ),
+                                );
+                              },
+                              fit: BoxFit.cover,
+                              height: 150, width: 150,
                             ),
-                            Text(rockets[i].firstFlight.toString()),
-                          ],
+                          ),
                         ),
-                      )
-                    ],
+                        SizedBox(width: 10,),
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(rockets[i].name, style: TextStyle(
+                                  fontWeight: FontWeight.w600
+                              ),),
+
+                              Text('country: ${rockets[i].country
+                                  .toString()}'),
+                              Text('flightNumber: ${rockets[i]
+                                  .type.toString()}'),
+                              Row(
+                                children: [
+                                  rockets[i].active ?
+                                  CustomButton(text: 'Active', color: Colors.green,) :
+                                  CustomButton(text: 'Inactive', color: Colors.grey,),
+                                ],
+                              ),
+                              Text(rockets[i].firstFlight.toString()),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

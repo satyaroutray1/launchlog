@@ -48,6 +48,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
                       margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
                       padding: EdgeInsets.all(5),
                       child: Card(
+                        color: Color(0xff1C1F2A),
                         child: SizedBox(
                           height: 200,
                           child: Row(
