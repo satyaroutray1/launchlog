@@ -16,7 +16,7 @@ Future<void> setup() async {
   sl.registerLazySingleton<LaunchUseCase>(() => LaunchUseCase(launchRepo: sl()));
 
   // Repository
-  sl.registerLazySingleton<LaunchRepo>(() => LaunchRepoImpl());
+  sl.registerLazySingleton<LaunchRepo>(() => LaunchRepoImpl(client: sl()));
 
   // External
   sl.registerLazySingleton(() => http.Client());
