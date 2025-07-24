@@ -39,6 +39,9 @@ void main() {
         LaunchLoading(),
         DataAvailable(launches: launches),
       ],
+      verify: (_) {
+        verify(() => mockUseCase()).called(1);
+      },
     );
 
 
@@ -59,6 +62,10 @@ void main() {
         LaunchLoading(),
         Error(error: 'error')
       ],
+
+      verify: (_) {
+        verify(() => mockUseCase()).called(1);
+      },
     );
   });
 }
